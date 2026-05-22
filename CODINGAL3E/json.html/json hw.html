@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>School Event Data Viewer</title>
+</head>
+<body>
+
+    <h1>School Event Data Viewer</h1>
+
+    <button onclick="saveEvent()">Save Event</button>
+    <button onclick="loadEvent()">Load Event</button>
+
+    <br><br>
+
+    <div>JSON Text: <span id="json-text"></span></div>
+    <div>Event Name: <span id="event-name"></span></div>
+    <div>Event Date: <span id="event-date"></span></div>
+    <div>Location: <span id="event-location"></span></div>
+    <div>Status: <span id="status"></span></div>
+    <div>Result: <span id="result"></span></div>
+
+    <script>
+
+        // School event object
+        let eventData = {
+            name: "Science Fair",
+            date: "15 June 2026",
+            location: "School Auditorium"
+        };
+
+        // Convert object to JSON and back
+        function saveEvent() {
+
+            let jsonText = JSON.stringify(eventData);
+
+            let loadedEvent = JSON.parse(jsonText);
+
+            document.getElementById("json-text").innerHTML = jsonText;
+
+            document.getElementById("event-name").innerHTML =
+                loadedEvent.name;
+
+            document.getElementById("event-date").innerHTML =
+                loadedEvent.date;
+
+            document.getElementById("event-location").innerHTML =
+                loadedEvent.location;
+        }
+
+        // delay function
+        function delay(ms) {
+            return new Promise(function(resolve) {
+                setTimeout(resolve, ms);
+            });
+        }
+
+        // Async and await example
+        async function loadEvent() {
+
+            document.getElementById("result").innerHTML = "";
+
+            document.getElementById("status").innerHTML =
+                "Loading school event data...";
+
+            await delay(2000);
+
+            document.getElementById("status").innerHTML =
+                "Processing event details...";
+
+            await delay(2000);
+
+            document.getElementById("status").innerHTML =
+                "Displaying final event information...";
+
+            await delay(2000);
+
+            document.getElementById("result").innerHTML =
+                "School event data loaded successfully!";
+        }
+
+    </script>
+
+</body>
+</html>
